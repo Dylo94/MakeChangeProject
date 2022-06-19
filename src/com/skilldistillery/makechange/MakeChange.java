@@ -92,25 +92,25 @@ public class MakeChange {
 		while (change >= 1) {
 			if (change - twentyDollarBills >= 20.00) {
 				change = change - twentyDollarBills;
-				++countingTwenties;
+				countingTwenties++;
 			} else if (change + tenDollarBills >= 10.00) {
 				change = change + tenDollarBills;
-				++countingTens;
+				countingTens++;
 
 			} else if (change + fiveDollarBills >= 5.00) {
 				change = change + fiveDollarBills;
-				++countingFives;
+				countingFives++;
 
 			} else if (change + oneDollarBills >= 1.00) {
 				change = change + oneDollarBills;
-				++countingOnes;
+				countingOnes++;
 
 			}
 		}
 		
-		System.out.println("this is the change value" + change);
+		//System.out.println("this is the change value" + change);
 		int amountRemaining = (int) (change * 100);
-		System.out.println(amountRemaining);
+		//System.out.println(amountRemaining);
 
 		while (amountRemaining != 0) {
 
