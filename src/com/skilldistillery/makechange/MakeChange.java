@@ -70,10 +70,10 @@ public class MakeChange {
 		double tenDollarBills = 10.00;
 		double fiveDollarBills = 5.00;
 		double oneDollarBills = 1.00;
-		double twentyFiveCents = 0.25;
-		double tenCents = 0.10;
-		double fiveCents = 0.05;
-		double Cent = 0.01;
+		double twentyFiveCents = 25;
+		double tenCents = 10;
+		double fiveCents = 05;
+		double Cent = 01;
 
 		// Counting how many times we have to give the change.
 		int countingTwenties = 0;
@@ -86,45 +86,55 @@ public class MakeChange {
 		int countingPennies = 0;
 
 		// Create a Variable to add Currencies to equal the change variable.
-		double addChange = 0;
+		// double change = 0;
 
-		// add currencies to addChange variable until it equals change variable
-		while (addChange != change) {
-			if (addChange + twentyDollarBills <= change) {
-				addChange = addChange + twentyDollarBills;
-				countingTwenties++;
-			} else if (addChange + tenDollarBills <= change) {
-				addChange = addChange + tenDollarBills;
-				countingTens++;
+		// add currencies to change variable until it equals change variable
+		while (change >= 1) {
+			if (change - twentyDollarBills >= 20.00) {
+				change = change - twentyDollarBills;
+				++countingTwenties;
+			} else if (change + tenDollarBills >= 10.00) {
+				change = change + tenDollarBills;
+				++countingTens;
 
-			} else if (addChange + fiveDollarBills <= change) {
-				addChange = addChange + fiveDollarBills;
-				countingFives++;
+			} else if (change + fiveDollarBills >= 5.00) {
+				change = change + fiveDollarBills;
+				++countingFives;
 
-			} else if (addChange + oneDollarBills <= change) {
-				addChange = addChange + oneDollarBills;
-				countingOnes++;
+			} else if (change + oneDollarBills >= 1.00) {
+				change = change + oneDollarBills;
+				++countingOnes;
 
-			} else if (addChange + twentyFiveCents <= change) {
-				addChange = addChange + twentyFiveCents;
+			}
+		}
+		
+		System.out.println("this is the change value" + change);
+		int amountRemaining = (int) (change * 100);
+		System.out.println(amountRemaining);
+
+		while (amountRemaining != 0) {
+
+			if (amountRemaining % twentyFiveCents == 0 || amountRemaining > twentyFiveCents) {
+				amountRemaining -= twentyFiveCents;
 				countingQuarters++;
 
-			} else if (addChange + tenCents <= change) {
-				addChange = addChange + tenCents;
-				tenCents++;
+			} else if (amountRemaining % tenCents == 0 || amountRemaining > tenCents) {
+				amountRemaining -= tenCents;
+				countingDimes++;
 
-			} else if (addChange + fiveCents <= change) {
-				addChange = addChange + fiveCents;
+			} else if (amountRemaining % fiveCents == 0 || amountRemaining > fiveCents) {
+				amountRemaining -= fiveCents;
 				countingNickels++;
 
-			} else if (addChange + Cent <= change) {
-				addChange += Cent;
+			} else if (amountRemaining % Cent == 0 || amountRemaining > Cent) {
+				amountRemaining -= Cent;
 				countingPennies++;
 			}
-			
-		}
-			currencies(countingTwenties, countingTens, countingFives, countingOnes, countingQuarters, countingDimes, countingNickels, countingPennies);
 
+		}
+		System.out.println(countingDimes);
+		currencies(countingTwenties, countingTens, countingFives, countingOnes, countingQuarters, countingDimes,
+				countingNickels, countingPennies);
 
 	}
 
@@ -153,37 +163,38 @@ public class MakeChange {
 		// look at each variable to see if its greater than 0 if it is it needs to go
 		// into the string
 		if (twentyDB > 0) {
-           result += twentyDB + " " + twentyD + ",";
+			result += twentyDB + " " + twentyD + ",";
 		}
 		if (tensDB > 0) {
-           result += tensDB + " " + tenDB + ",";
+			result += tensDB + " " + tenDB + ",";
 		}
-        if (fivesDB > 0) {
-        	  result += fivesDB + " " + fiveDB + ",";
-        }
-        if (oneDB > 0) {
-        	  result += oneDB + " " + onesDB + ",";
-        }
-        if (quartersC > 0) {
-        	  result += quartersC + " " + quarterC + ",";
-        }
-        if (dimesC > 0) {
-        	  result += dimesC + " " + dimeC + ",";
-        }
-        if (nickelsC > 0) {
-        	  result += nickelsC + " " + nickelC + ",";
-        }
-        if (centC > 0) {
-        	  result += centC + " " + pennies + ",";
-        }
-        //we are creating a new version of the string that does not include the last character.
-        String resultCopy = result.substring(0, result.length() - 1);
-        resultCopy = resultCopy + ".";
-        		
-        System.out.println(resultCopy);
-        
-        restart();
-        
-	} 
+		if (fivesDB > 0) {
+			result += fivesDB + " " + fiveDB + ",";
+		}
+		if (oneDB > 0) {
+			result += oneDB + " " + onesDB + ",";
+		}
+		if (quartersC > 0) {
+			result += quartersC + " " + quarterC + ",";
+		}
+		if (dimesC > 0) {
+			result += dimesC + " " + dimeC + ",";
+		}
+		if (nickelsC > 0) {
+			result += nickelsC + " " + nickelC + ",";
+		}
+		if (centC > 0) {
+			result += centC + " " + pennies + ",";
+		}
+		// we are creating a new version of the string that does not include the last
+		// character.
+		String resultCopy = result.substring(0, result.length() - 1);
+		resultCopy = resultCopy + ".";
+
+		System.out.println(resultCopy);
+
+		restart();
+
+	}
 
 }
