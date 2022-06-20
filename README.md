@@ -1,8 +1,9 @@
 # MakeChangeProject
 
-Description
+### Description
 
 
-Technologies used
+### Technologies Used
 
-what i learned
+
+### What I Learned
