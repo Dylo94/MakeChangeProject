@@ -28,7 +28,7 @@ public class MakeChange {
 		boolean exactChange = priceOfItem == tenderedByCustomer;
 
 		if (notEnoughFunds) {
-			System.out.println("Customer provided inefficient funds.\n ");
+			System.out.println("Customer provided insufficient funds.\n ");
 			userPrompt();
 		} else if (exactChange) {
 			System.out.println("Thank you for the exact change!.\n ");
@@ -90,28 +90,29 @@ public class MakeChange {
 
 		// add currencies to change variable until it equals change variable
 		while (change >= 1) {
-			if (change - twentyDollarBills >= 20.00) {
+			if (change >= twentyDollarBills) {
 				change = change - twentyDollarBills;
 				countingTwenties++;
-			} else if (change + tenDollarBills >= 10.00) {
-				change = change + tenDollarBills;
+			} else if (change >= tenDollarBills) {
+				change = change - tenDollarBills;
 				countingTens++;
 
-			} else if (change + fiveDollarBills >= 5.00) {
-				change = change + fiveDollarBills;
+			} else if (change >= fiveDollarBills) {
+				change = change - fiveDollarBills;
 				countingFives++;
 
-			} else if (change + oneDollarBills >= 1.00) {
-				change = change + oneDollarBills;
+			} else if (change >= oneDollarBills) {
+				change = change - oneDollarBills;
 				countingOnes++;
 
 			}
 		}
 		
 		//System.out.println("this is the change value" + change);
-		int amountRemaining = (int) (change * 100);
 		//System.out.println(amountRemaining);
 
+		int amountRemaining = (int) ((change * 100)+ 0.5);
+		
 		while (amountRemaining != 0) {
 
 			if (amountRemaining % twentyFiveCents == 0 || amountRemaining > twentyFiveCents) {
@@ -132,7 +133,7 @@ public class MakeChange {
 			}
 
 		}
-		System.out.println(countingDimes);
+		//System.out.println(countingDimes);
 		currencies(countingTwenties, countingTens, countingFives, countingOnes, countingQuarters, countingDimes,
 				countingNickels, countingPennies);
 
